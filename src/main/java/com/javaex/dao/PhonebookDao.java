@@ -169,11 +169,11 @@ public class PhonebookDao {
 		PersonVo personVo = sqlSession.selectOne("phonebook.selectOne", no);
 		//Map<String, Object> personMap = sqlSession.selectOne("phonebook.selectOne", no);
 		
-		System.out.println("----------");
-		System.out.println(personVo);
+		// System.out.println("----------");
+		// System.out.println(personVo);
 		//System.out.println(personMap);
 		//System.out.println(personMap.get("name"));
-		System.out.println("----------");
+		// System.out.println("----------");
 		
 		return personVo;
 		//return null;
@@ -287,9 +287,9 @@ public class PhonebookDao {
 		
 		List<PersonVo> personList = sqlSession.selectList("phonebook.selectList");
 		
-		System.out.println("------------------");
-		System.out.println(personList);
-		System.out.println("------------------");
+		// System.out.println("------------------");
+		// System.out.println(personList);
+		// System.out.println("------------------");
 		
 		return personList;
 		
