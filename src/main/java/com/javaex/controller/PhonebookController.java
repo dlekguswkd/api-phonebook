@@ -33,13 +33,14 @@ public class PhonebookController {
 	// @ResponseBody		// 글자 그냥 내보내기위해서				  가져오는거
 	// @RequestMapping(value="/api/persons", method=RequestMethod.GET)
 	@GetMapping("/api/persons")
-	public List<PersonVo>  getList() {
+	public JsonResult getList() {
 		System.out.println("PhonebookController.getList()");
 		
 		List<PersonVo> personList = phonebookService.exeGetPerson();
 		// System.out.println(personList);
 		
-		return personList;	
+		// return personList;	
+		return JsonResult.success(personList);
 	}
 	
 	
@@ -50,13 +51,18 @@ public class PhonebookController {
 	// @RequestMapping(value="/api/persons", method=RequestMethod.POST)
 	@PostMapping("/api/persons")
 	// @RequestBody 는 화면에 있는걸 가져오라는 의미
-	public int addPerson(@RequestBody PersonVo personVo) { //@ModelAttribute는 파라미터로 보낸걸 갖고오는(post는 그게없음)
+	public JsonResult addPerson(@RequestBody PersonVo personVo) { //@ModelAttribute는 파라미터로 보낸걸 갖고오는(post는 그게없음)
 		System.out.println("PhonebookController.addPerson()");
 		
 		// System.out.println(personVo);
 		int count = phonebookService.exeWritePerson(personVo);
 		// System.out.println(count);
-		return count;
+		if(count != 1) { //등록안됨
+			return JsonResult.fail("등록에 실패했습니다.");
+		}else { //등록됨
+			return JsonResult.success(count);
+		}
+		// return count;
 	}
 	
 	
